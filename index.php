@@ -23,6 +23,15 @@
                 <img src="assets/images/icons/icons8-youtube-36.png" title="logo" alt="Site logo">
             </a>
 
+            <div class="searchBarContainer">
+                <form action="search.php" method="GET">
+                    <input type="text" class="searchBar" name="term" placeholder="Search...">
+                    <button class="searchButton">
+                        <img class="search-icon" src="assets/images/icons/icons8-search-50.png">
+                    </button>
+                </form>
+            </div>
+
         </div>
 
 
