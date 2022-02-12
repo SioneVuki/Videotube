@@ -77,3 +77,34 @@ body {
 .search-icon {
     height: 20px;
 }
+
+#mastHeadContainer .searchBarContainer form {
+    flex: 1;
+    display: flex;
+}
+
+#mastHeadContainer .searchBarContainer .searchBar {
+    flex: 1;
+    max-width: 600px;
+    color: #111;
+    padding: 2px 6px;
+    font-size: 14px;
+    font-weight: 100;
+    border: 1px solid #ccc;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-right: none;
+    height: 32px;
+    box-shadow: #eee 0px 1px 2px 0px inset;
+}
+
+#mastHeadContainer .searchBarContainer .searchButton {
+    width: 70px;
+    border-top-color: #d3d3d3;
+    border-bottom-color: #f8f8f8;
+    border-right-color: #f8f8f8;
+    border-left-color: #d3d3d3;
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
+    cursor: pointer;
+}
