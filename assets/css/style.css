@@ -26,7 +26,8 @@ body {
     align-items: center;
 }
 
-#mastHeadContainer button:not(.searchButton) {
+#mastHeadContainer button:not(.searchButton),
+#mastHeadContainer .rightIcons img {
     cursor: pointer;
     width: 40px;
     height: 70px;
@@ -34,6 +35,13 @@ body {
     box-sizing: border-box;
     border: none;
     background-color: transparent;
+}
+
+#mastHeadContainer .rightIcons {
+    height: 100%;
+    /* added my own code */
+    display: inline-table;
+    margin-right: 20px;
 }
 
 #mastHeadContainer .logoContainer {
@@ -44,6 +52,7 @@ body {
     height: 25px;
     margin-left: 20px;
 }
+
 #sideNavContainer {
     width: 240px;
     background-color: #f5f5f5;

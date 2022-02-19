@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Hoopology</title>
 
@@ -10,8 +11,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="assets/js/commonActions.js"></script>
 </head>
+
 <body>
-   
+
     <div id="pageContainer">
 
         <div id="mastHeadContainer">
@@ -32,8 +34,17 @@
                 </form>
             </div>
 
-        </div>
+            <div class="rightIcons">
+                <a href="upload.php">
+                    <img class="upload" src="assets/images/icons/icons8-upload.png">
+                </a>
+                <a href="#">
+                    <img class="upload" src="assets/images/icons/icons8-default.png">
+                </a>
 
+            </div>
+
+        </div>
 
         <div id="sideNavContainer" style="display:none;">
 
@@ -41,7 +52,7 @@
 
         <div id="mainSectionContainer">
 
-            <div id="mainContentContainer"> 
+            <div id="mainContentContainer">
                 ok
             </div>
 
@@ -50,4 +61,5 @@
     </div>
 
 </body>
+
 </html>
