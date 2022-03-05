@@ -1,5 +1,9 @@
-<?php require_once("assets/css/includes/header.php"); ?>
+<?php require_once("includes/header.php"); ?>
 
-ok
+<div class="column">
 
-<?php require_once("assets/css/includes/footer.php"); ?>     
+
+
+</div>
+
+<?php require_once("includes/footer.php"); ?>     
