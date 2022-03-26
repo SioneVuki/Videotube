@@ -1,16 +1,25 @@
 <?php
 class VideoDetailesFormProvider {
 
+    private $con;
+
+    public function __construct($con) {
+        $this->con = $con;
+        //echo   $this->con;
+    }
+
     public function createUploadform() {
         $fileInput = $this->createFileInput();
         $titleInput = $this->createTitleInput();
         $descriptionInput = $this->createDescriptionInput();
         $privacyInput = $this->createPrivacyInput();
+        $categoriesInput = $this->createCategoriesInput();
         return "<form action='processing.php' method='POST'>
                     $fileInput
                     $titleInput
                     $descriptionInput
                     $privacyInput
+                    $categoriesInput
                 </form>";
     }
 
@@ -43,6 +52,13 @@ class VideoDetailesFormProvider {
                 </div>";
     }
 
-    
+    private function createCategoriesInput() {
+        $query = $this->con->prepare("SELECT * FROM Categories");
+        $query->execute();
+
+        while($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        echo $row["name"] . "<br>";        
+        }
+    }
 }
 ?>
