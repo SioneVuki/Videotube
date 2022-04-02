@@ -1,9 +1,12 @@
 <?php
-class VideoDetailesFormProvider {
+class VideoDetailsFormProvider {
 
+    //Property & Global Variables
     private $con;
+    
 
     public function __construct($con) {
+        
         $this->con = $con;
         //echo   $this->con;
     }
@@ -14,12 +17,14 @@ class VideoDetailesFormProvider {
         $descriptionInput = $this->createDescriptionInput();
         $privacyInput = $this->createPrivacyInput();
         $categoriesInput = $this->createCategoriesInput();
+        $uploadButton = $this->createUploadButton();
         return "<form action='processing.php' method='POST'>
                     $fileInput
                     $titleInput
                     $descriptionInput
                     $privacyInput
                     $categoriesInput
+                    $uploadButton
                 </form>";
     }
 
@@ -56,9 +61,31 @@ class VideoDetailesFormProvider {
         $query = $this->con->prepare("SELECT * FROM Categories");
         $query->execute();
 
+        $html = "<div class='form-group'>
+                    <select class='form-control' name='categoryInput'>";
+
         while($row = $query->fetch(PDO::FETCH_ASSOC)) {
-        echo $row["name"] . "<br>";        
+            $id = $row["id"];
+            $name = $row["name"];
+
+            $html .= "<option value='$id'>$name</option>";
         }
+        
+        $html .= "</select>
+                </div>";
+        
+        return $html;
+
+    }
+
+    private function createUploadButton() {
+        return "<button type='submit' class='btn btn-primary' name='uploadButton'>Upload</button>";
     }
 }
 ?>
+
+
+
+
+
+

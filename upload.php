@@ -7,7 +7,8 @@ require_once("includes/classes/VideoDetailsFormProvider.php")
 <div class="column">
 
     <?php
-    $formProvider = new VideoDetailesFormProvider($con);
+    $formProvider = new VideoDetailsFormProvider($con);
+   
     // echo $con;
     echo $formProvider->createUploadform();
 
