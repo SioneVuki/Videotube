@@ -15,7 +15,7 @@
 
     <div class="signInContainer">
 
-         <div class="column">
+         <div class="column columnForm">
 
             <div class="header">
                 <img src="assets/images/icons/icons8-youtube-36.png" title="logo" alt="Site logo">

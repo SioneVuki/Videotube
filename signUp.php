@@ -1,4 +1,23 @@
-<?php require_once("includes/config.php"); ?>
+<?php 
+require_once("includes/config.php"); 
+
+
+function sanitizeFormString($inputText) {
+    $inputText = strip_tags($inputText);
+    $inputText = str_replace(" ", "", $inputText);
+    $inputText = strtolower($inputText);
+    $inputText = ucfirst($inputText);
+    return $inputText;
+}
+
+
+if(isset($_POST["submitButton"])) {
+    $firstName = sanitizeFormString($_POST["firstName"];
+
+    echo $firstName;
+}
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -15,7 +34,7 @@
 
     <div class="signInContainer">
 
-         <div class="column">
+         <div class="column columnForm2">
 
             <div class="header">
                 <img src="assets/images/icons/icons8-youtube-36.png" title="logo" alt="Site logo">

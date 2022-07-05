@@ -200,4 +200,15 @@ a:hover {
     font-size: 14px;
     font-weight: 400;
     color: #212529;
+    text-decoration: none;
 }
+
+.columnForm{
+    height: 370px;
+}
+
+.columnForm2 {
+    height: 600px;
+}
+
+
