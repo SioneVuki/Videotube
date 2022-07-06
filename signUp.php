@@ -1,20 +1,25 @@
 <?php 
 require_once("includes/config.php"); 
+require_once("includes/classes/FormSanitizer.php"); 
+require_once("includes/classes/Account.php"); 
 
-
-function sanitizeFormString($inputText) {
-    $inputText = strip_tags($inputText);
-    $inputText = str_replace(" ", "", $inputText);
-    $inputText = strtolower($inputText);
-    $inputText = ucfirst($inputText);
-    return $inputText;
-}
+$account = new Account($con);
 
 
 if(isset($_POST["submitButton"])) {
-    $firstName = sanitizeFormString($_POST["firstName"];
+    $firstName = FormSanitizer::sanitizeFormString($_POST["firstName"]);
+    $lastName = FormSanitizer::sanitizeFormString($_POST["lastName"]);
 
-    echo $firstName;
+    $username = FormSanitizer::sanitizeFormUsername($_POST["username"]);
+
+    $email = FormSanitizer::sanitizeFormEmail($_POST["email"]);
+    $email2 = FormSanitizer::sanitizeFormEmail($_POST["email2"]);
+
+    $password = FormSanitizer::sanitizeFormPassword($_POST["password"]);
+    $password2 = FormSanitizer::sanitizeFormPassword($_POST["password2"]);
+
+    $account->register($firstName, $lastName, $username, $email, $email2, $password, $password2);
+
 }
 
 ?>

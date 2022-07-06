@@ -2,7 +2,7 @@
 
 <div class="column">
 
-<?php phpinfo() ?>
+<!-- <?php phpinfo() ?> -->
 
 </div>
 
