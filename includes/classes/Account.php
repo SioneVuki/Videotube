@@ -14,7 +14,13 @@ class Account {
 
     private function validateFirstName($fn) {
         if(strlen($fn) > 25 || strlen($fn) < 2) {
-            array_push($this->errorArray, )
+            array_push($this->errorArray, Constants::$firstNameCharacters);
+        }
+    }
+
+    public function getError($error) {
+        if(in_array($error, $this->errorArray)) {
+            return "<span class='errorMessage'>$error</span>";
         }
     }
 
