@@ -13,7 +13,40 @@ class Account {
         $this->validatelastName($ln);
         $this->validateUsername($un);
         $this->validateEmails($em, $em2);
+        $this->validatePasswords($pw, $pw2);
+       // echo print_r($this->errorArray);
+        if(empty($this->errorArray)) {
+            return $this->insertUserDetails($fn, $ln, $un, $em, $pw);
+        }
+        else {
+            return false;
+        }
+    }
 
+    public function insertUserDetails($fn, $ln, $un, $em, $pw) {
+    
+        $pw = hash("sha512", $pw);
+        $profilePic = "assets/images/profilePictures/icons8-default2.png";
+
+        $query = $this->con->prepare("INSERT INTO users (firstName, lastName, username, email, password, profilePic)
+                                        VALUES(:fn, :ln, :un, :em, :pw, :pic)");
+
+        $query->bindParam(":fn, $fn");
+        $query->bindParam(":ln, $ln");
+        $query->bindParam(":un, $un");
+        $query->bindParam(":em, $em");
+        $query->bindParam(":pw, $pw");
+        $query->bindParam(":pic, $profilePic");
+
+        // echo $fn;
+        // echo $ln;
+        // echo $un;
+        // echo $em;
+        // echo $pw;
+        // echo $profilePic;
+
+        return $query->execute();
+        // return true;
     }
 
     private function validateFirstName($fn) {
@@ -76,6 +109,9 @@ class Account {
             return;
         }
 
+        if(strlen($pw) > 30 || strlen($pw) < 5) {
+            array_push($this->errorArray, Constants::$passwordLength);
+        }
     }
 
     public function getError($error) {
