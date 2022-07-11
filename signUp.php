@@ -23,11 +23,8 @@ if(isset($_POST["submitButton"])) {
     $wasSuccessful = $account->register($firstName, $lastName, $username, $email, $email2, $password, $password2);
 
     if($wasSuccessful) {
-       echo "SUCCESS";
-    }
-    else {
-        echo $password2;
-        echo "FAILED";  
+       $_SESSION["userLoggedIn"] = $username;
+       header("Location: index.php");
     }
 
 }

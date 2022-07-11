@@ -1,9 +1,14 @@
 <?php require_once("includes/header.php"); ?>
 
-<div class="column">
 
-<!-- <?php phpinfo() ?> -->
+<?php
+if(isset($_SESSION["userLoggedIn"])) {
+    echo "user is logged in as " . $_SESSION["userLoggedIn"];
+}
+else {
+    echo "not logged in";
+}
+?>
 
-</div>
 
 <?php require_once("includes/footer.php"); ?>     
