@@ -15,7 +15,7 @@ class VideoPlayer {
             $autoPlay = "";
         }
         $filePath = $this->video->getFilePath();
-        return "<video class='videPlayer' controls $autoPlay>
+        return "<video class='videoPlayer' controls $autoPlay>
                     <source src='$filePath' type='video/mp4'>
                     Your browser does not support the video tag
                 </video>";

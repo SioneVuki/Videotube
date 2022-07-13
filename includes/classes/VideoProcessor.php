@@ -2,10 +2,11 @@
 class VideoProcessor {
 
     private $con;
-    private $sizeLimit = 5000000000000;
+    private $sizeLimit = 500000000000;
     private $allowedTypes = array("mp4", "flv", "webm", "mkv", "vob", "ogv", "ogg", "avi", "wmv", "mov", "mpeg", "mpg");
     private $ffmpegPath = "ffmpeg/bin/ffmpeg";
     private $ffprobePath = "ffmpeg/bin/ffprobe";
+    private $uniqueID = uniqid()
 
     public function __construct($con) {
         $this->con = $con;
@@ -17,7 +18,7 @@ class VideoProcessor {
         $targetDir = "uploads/videos/";
         $videoData = $videoUploadData->videoDataArray;
 
-        $tempFilePath = $targetDir . uniqid() . basename($videoData["name"]);
+        $tempFilePath = $targetDir . $uniqueID . basename($videoData["name"]);
         //"uploads/videos/" ask Dave
 
         $tempFilePath = str_replace(" ", "_", $tempFilePath);
@@ -30,7 +31,7 @@ class VideoProcessor {
         }
             if(move_uploaded_file($videoData["tmp_name"], $tempFilePath)) {
             
-            $finalFilePath = $targetDir . uniqid() . ".mp4";
+            $finalFilePath = $targetDir . $uniqueID . ".mp4";
 
             if(!$this->insertVideoData($videoUploadData, $finalFilePath)) {
                 echo "Insert query failed";
@@ -38,12 +39,12 @@ class VideoProcessor {
             }
 
             if(!$this->convertVideoToMp4($tempFilePath, $finalFilePath)) {
-                echo "Upload failed\n";
+                echo "Upload failed failed to convert\n";
                 return false;
             }
 
             if(!$this->deleteFile($tempFilePath)) {
-                echo "Upload failed\n";
+                echo "Upload failed to delete\n";
                 return false;
             }
 
@@ -140,7 +141,7 @@ class VideoProcessor {
         $this->updateDuration($duration, $videoId);
 
         for($num = 1; $num <= $numThumbnails; $num++) {
-            $imageName = uniqid() . ".jpg";
+            $imageName = $uniqueID . ".jpg";
             $interval = ($duration * 0.8) / $numThumbnails * $num;
             $fullThumbnailPath = "$pathToThumbnail/$videoId-$imageName";
 

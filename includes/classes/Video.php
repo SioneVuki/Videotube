@@ -5,7 +5,7 @@ class Video {
 
     public function __construct($con, $input, $userLoggedInObj) {
         $this->con = $con;
-        $this->userLoggedIn = $userLoggedInObj;
+        $this->userLoggedInObj = $userLoggedInObj;
 
         if(is_array($input)) {
             $this->sqlData = $input;
