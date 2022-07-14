@@ -44,10 +44,10 @@ $userLoggedInObj = new User($con, $usernameLoggedIn);
 
             <div class="rightIcons">
                 <a href="upload.php">
-                    <img class="upload" src="assets/images/icons/icons8-upload.png">
+                    <img class="upload" src="assets/images/icons/upload.png">
                 </a>
                 <a href="#">
-                    <img class="upload" src="assets/images/icons/icons8-default.png">
+                    <img class="upload" src="assets/images/icons/default2.png">
                 </a>
 
             </div>

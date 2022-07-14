@@ -31,7 +31,7 @@ $("form").submit(function() {
 
       <div class="modal-body">
         Please wait. This might take a while.
-        <img src="assets/images/icons/Spin-1s-200px.gif">
+        <img src="assets/images/icons/loading-spinner.gif">
       </div>
      
     </div>
