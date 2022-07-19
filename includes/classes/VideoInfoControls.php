@@ -1,6 +1,7 @@
 <?php
 require_once("includes/classes/ButtonProvider.php"); 
 class VideoInfoControls {
+
     private $video, $userLoggedInObj;
 
     public function __construct($video, $userLoggedInObj) {
@@ -12,10 +13,10 @@ class VideoInfoControls {
 
         $likeButton = $this->createLikeButton();
         $dislikeButton = $this->createDislikeButton();
-
+        
         return "<div class='controls'>
-                   $likeButton
-                   $dislikeButton     
+                    $likeButton
+                    $dislikeButton
                 </div>";
     }
 
@@ -24,10 +25,12 @@ class VideoInfoControls {
         $videoId = $this->video->getId();
         $action = "likeVideo(this, $videoId)";
         $class = "likeButton";
-        
-        $imageSrc= "assets/images/icons/thumbs-up.png";
 
-        //Change button img if video has been liked already
+        $imageSrc = "assets/images/icons/thumbs-up.png";
+
+        if($this->video->wasLikedBy()) {
+            $imageSrc = "assets/images/icons/thumbs-up-active.png";
+        }
 
         return ButtonProvider::createButton($text, $imageSrc, $action, $class);
     }
@@ -37,10 +40,12 @@ class VideoInfoControls {
         $videoId = $this->video->getId();
         $action = "dislikeVideo(this, $videoId)";
         $class = "dislikeButton";
-        
-        $imageSrc= "assets/images/icons/thumbs-down.png";
 
-        //Change button img if video has been liked already
+        $imageSrc = "assets/images/icons/thumbs-down.png";
+
+        if($this->video->wasDislikedBy()) {
+            $imageSrc = "assets/images/icons/thumbs-down-active.png";
+        }
 
         return ButtonProvider::createButton($text, $imageSrc, $action, $class);
     }
