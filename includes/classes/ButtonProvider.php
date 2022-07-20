@@ -15,8 +15,20 @@ class ButtonProvider {
 
         return "<button class='$class' onclick='$action'>
                     $image
-                <span class='text'>$text</span>
-            </button>";
+                    <span class='text'>$text</span>
+                </button>";
+    }
+
+    public static function createHyperLinkButton($text, $imageSrc, $href, $class) {
+
+        $image = ($imageSrc == null) ? "" : "<img src='$imageSrc'>";
+
+        return "<a href='$href'>
+                    <button class='$class' onclick='$action'>
+                        $image
+                        <span class='text'>$text</span>
+                    </button>
+                </a>";
     }
 
     public static function createUserProfileButton($con, $username) {
@@ -27,6 +39,16 @@ class ButtonProvider {
         return "<a href='$link'>
                     <img src='$profilePic' class='profilePicture'>
                 </a>";
+    }
+
+    public static function createEditVideoButton($video) {
+        $href = "editVideo.php?videoId=$videoId";
+
+        $button = ButtonProvider::createHyperLinkButton("EDIT VIDEO", null, $href, "edit button");
+
+        return "<div class='editVideoButtonContainer'>
+                    $button
+                </div>";
     }
 
 }
