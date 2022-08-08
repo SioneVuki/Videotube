@@ -33,6 +33,7 @@ class ButtonProvider {
 
     public static function createUserProfileButton($con, $username) {
         $userObj = new User($con, $username);
+
         $profilePic = $userObj->getProfilePic();
         $link = "profile.php?username=$username";
 

@@ -7,6 +7,7 @@ class CommentSection {
         $this->con = $con;
         $this->video = $video;
         $this->userLoggedInObj = $userLoggedInObj;
+        // echo  $userLoggedInObj;
     }
 
     public function create() {
@@ -22,7 +23,8 @@ class CommentSection {
         $commentAction = "postComment(this, \"$postedBy\", $videoId, null, \"comments\")";
         $commentButton = ButtonProvider::createButton("COMMENT", null, $commentAction, "postComment");
         
-        // Get comments html
+        $comments = $this->video->getComments();
+        $commentItems = "";
 
         return "<div class='commentSection'>
 

@@ -296,7 +296,7 @@ a:hover {
 }
 
 .secondaryInfo .topRow .uploadInfo .date {
-    color: rgba(17, 17, 17, 0.6);
+    color: rgba(17,17,17,0.6);
     font-size: 13px;
     font-weight: 400;
 }
@@ -338,12 +338,12 @@ a:hover {
 
 .subscribeButtonContainer .unsubscribe {
     background-color: #eee;
-    color: rgba(17, 17, 17, 0.6);
+    color: rgba(17,17,17,0.6);
 }
 
 .editVideoButtonContainer .edit {
     background-color: #2692e6;
-    color: #eee;
+    color: #fff;
 }
 
 .secondaryInfo .topRow .uploadInfo .owner a {
@@ -361,19 +361,20 @@ a:hover {
 }
 
 .commentSection .header .commentForm .profilePicture,
-.commentSection .comment .profilePicture {
+.commentSection .comment .profilePicture,
+.commentForm .profilePicture {
     margin-right: 16px;
     width: 48px;
     height: 48px;
     border-radius: 50%;
 }
 
-.commentSection .header .commentCount,
-.itemContainer .commentForm {
+.commentSection .header .commentCount {
     margin-bottom: 24px;
 }
 
-.commentSection .header .commentForm {
+.commentSection .header .commentForm,
+.itemContainer .commentForm {
     display: flex;
 }
 
@@ -389,7 +390,6 @@ a:hover {
 
 .itemContainer .commentForm textarea {
     height: 30px;
-
 }
 
 .commentSection .header .commentForm .postComment,
@@ -406,11 +406,11 @@ a:hover {
 
 .itemContainer .commentForm .cancelComment {
     background-color: transparent;
-    color: rgba(17, 17, 17, 0.6);
+    color: rgba(17,17,17,0.6);
 }
 
-.itemContainer .commentForm .postComment:hover {
-    color: #000;
+.itemContainer .commentForm .cancelComment:hover {
+    color:#000;
 }
 
 .commentSection .itemContainer {
@@ -423,14 +423,13 @@ a:hover {
 
 .commentSection .commentHeader {
     margin-bottom: 2px;
-    text-decoration: none;
 }
 
 .commentSection .comment .username {
     margin-right: 8px;
     color: #111;
     font-size: 13px;
-    font-weight: 500;
+    font-weight:500;
     text-decoration: none;
 }
 
@@ -441,10 +440,43 @@ a:hover {
 }
 
 .itemContainer .controls {
-    margin-left: 64px;
-    
+    margin-left: 64px
 }
 
+.itemContainer .controls button,
+.itemContainer .controls .likesCount {
+    height: 32px;
+    background-color: transparent;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(17,17,17,0.6);
+}
 
+.itemContainer .controls button {
+    cursor: pointer;
+}
 
+.itemContainer .controls .likesCount {
+    margin: 0 5px;
+}
 
+.itemContainer .controls button img {
+    height: 16px;
+}
+
+.itemContainer .commentForm .profilePicture {
+    width: 30px;
+    height: 30px;
+}
+
+.commentSection .comment .timestamp {
+    color: #888;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+.hidden {
+    display: none !important;
+}

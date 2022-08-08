@@ -66,7 +66,7 @@ class CommentControls {
     private function createLikeButton() {
         $commentId = $this->comment->getId();
         $videoId = $this->comment->getVideoId();
-        $action = "likeComment($commentId, qthis, $videoId)";
+        $action = "likeComment($commentId, this, $videoId)";
         $class = "likeButton";
 
         $imageSrc = "assets/images/icons/thumbs-up.png";

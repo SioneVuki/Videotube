@@ -26,6 +26,7 @@ $video->incrementViews();
     echo $videoPlayer->create();
 
     $commentSection = new CommentSection($con, $video, $userLoggedInObj);
+    // print_r($userLoggedInObj->getName());
     echo $commentSection->create();
 ?>
 
