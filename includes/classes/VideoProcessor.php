@@ -6,23 +6,26 @@ class VideoProcessor {
     private $allowedTypes = array("mp4", "flv", "webm", "mkv", "vob", "ogv", "ogg", "avi", "wmv", "mov", "mpeg", "mpg");
     private $ffmpegPath = "ffmpeg/bin/ffmpeg";
     private $ffprobePath = "ffmpeg/bin/ffprobe";
-    private $uniqueID = uniqid()
-
+    private $uniqueID;
+   
     public function __construct($con) {
         $this->con = $con;
+        $this->uniqueID =uniqid();
+        // echo $this->uniqueID;
+        
     
     }
 
     public function upload($videoUploadData) {
-
+     
         $targetDir = "uploads/videos/";
         $videoData = $videoUploadData->videoDataArray;
 
-        $tempFilePath = $targetDir . $uniqueID . basename($videoData["name"]);
+        $tempFilePath = $targetDir . $this->uniqueID . basename($videoData["name"]);
         //"uploads/videos/" ask Dave
 
         $tempFilePath = str_replace(" ", "_", $tempFilePath);
-        echo $tempFilePath;
+        // echo $tempFilePath;
 
        $isValidData = $this->processData($videoData, $tempFilePath);
 
@@ -31,8 +34,9 @@ class VideoProcessor {
         }
             if(move_uploaded_file($videoData["tmp_name"], $tempFilePath)) {
             
-            $finalFilePath = $targetDir . $uniqueID . ".mp4";
+            $finalFilePath = $targetDir . $this->uniqueID . ".mp4";
 
+            // echo $finalFilePath;
             if(!$this->insertVideoData($videoUploadData, $finalFilePath)) {
                 echo "Insert query failed";
                 return false;
@@ -49,11 +53,11 @@ class VideoProcessor {
             }
 
             if(!$this->generateThumbnails($finalFilePath)) {
-                echo "Upload failed - could not genereate thumbnails\n";
+                echo "Upload failed - could not generate thumbnails\n";
                 return false;
             }
 
-            return true;
+        //     return true;
         }
     }
 
@@ -98,6 +102,7 @@ class VideoProcessor {
         $query->bindParam(":privacy", $uploadData->privacy);
         $query->bindParam(":category", $uploadData->category);
         $query->bindParam(":filePath", $filePath);
+        // echo $filePath;
 
         return $query->execute();
 
@@ -109,6 +114,7 @@ class VideoProcessor {
         $outputLog = array();
         exec($cmd, $outputLog, $returnCode);
 
+        // echo $returnCode != 0;
         if($returnCode != 0) {
             //Command failed
             foreach($outputLog as $line) {
@@ -141,7 +147,7 @@ class VideoProcessor {
         $this->updateDuration($duration, $videoId);
 
         for($num = 1; $num <= $numThumbnails; $num++) {
-            $imageName = $uniqueID . ".jpg";
+            $imageName = $this->uniqueID . ".jpg";
             $interval = ($duration * 0.8) / $numThumbnails * $num;
             $fullThumbnailPath = "$pathToThumbnail/$videoId-$imageName";
 

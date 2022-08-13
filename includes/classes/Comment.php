@@ -7,7 +7,7 @@ class Comment {
     private $con, $sqlData, $userLoggedInObj, $videoId;
 
     public function __construct($con, $input, $userLoggedInObj, $videoId) {
-
+        // print_r( $input);
         if(!is_array($input)) {
             $query = $con->prepare("SELECT * FROM comments where id=:id");
             $query->bindParam(":id", $input);
@@ -15,7 +15,7 @@ class Comment {
 
             $input = $query->fetch(PDO::FETCH_ASSOC);
         }
-        
+       
         $this->sqlData = $input;
         $this->con = $con;
         $this->userLoggedInObj = $userLoggedInObj;
@@ -28,6 +28,7 @@ class Comment {
         $body = $this->sqlData["body"];
         $postedBy = $this->sqlData["postedBy"];
         $profileButton = ButtonProvider::createUserProfileButton($this->con, $postedBy);
+        // echo $this->sqlData["datePosted"];
         $timespan = $this->time_elapsed_string($this->sqlData["datePosted"]);
 
         $commentControlsObj = new CommentControls($this->con, $this, $this->userLoggedInObj);
@@ -81,9 +82,9 @@ class Comment {
 
     function time_elapsed_string($datetime, $full = false) {
         $now = new DateTime;
-        $ago = new DateTime($datePosted);
+        $ago = new DateTime($datetime);
         $diff = $now->diff($ago);
-    
+        // print_r( $ago);
         $diff->w = floor($diff->d / 7);
         $diff->d -= $diff->w * 7;
     
@@ -217,6 +218,24 @@ class Comment {
 
             return -1 - $count;
         }
+    }
+
+    public function getReplies() {
+        $query = $this->con->prepare("SELECT * FROM comments WHERE responseTo=:commentId ORDER BY datePosted ASC");
+        $query->bindParam(":commentId", $id);
+
+        $id = $this->getId();
+
+        $query->execute();
+
+        $comments = "";
+        $videoId = $this->getVideoId();
+        while($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            $comment = new Comment($this->con, $row, $this->userLoggedInObj, $videoId);
+            $comments .= $comment->create();
+        }
+
+        return $comments;
     }
 
 }

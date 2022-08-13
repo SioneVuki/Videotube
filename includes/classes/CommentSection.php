@@ -25,6 +25,9 @@ class CommentSection {
         
         $comments = $this->video->getComments();
         $commentItems = "";
+        foreach ($comments as $comment) {
+            $commentItems .= $comment->create();
+        }
 
         return "<div class='commentSection'>
 
@@ -39,7 +42,7 @@ class CommentSection {
                     </div>
 
                     <div class='comments'>
-
+                        $commentItems
                     </div>
 
                 </div>";
