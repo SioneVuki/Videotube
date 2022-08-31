@@ -1,4 +1,4 @@
-<?php 
+<?php
 class User {
 
     private $con, $sqlData;
@@ -14,9 +14,9 @@ class User {
     }
 
     public static function isLoggedIn() {
-        return isset($_SESSION["userLoggedIn"]);
+        return isset($_SESSION["userLoggedIn"]);    
     }
-
+    
     public function getUsername() {
         return $this->sqlData["username"];
     }
@@ -61,5 +61,20 @@ class User {
         $query->execute();
         return $query->rowCount();
     }
+
+    public function getSubscriptions() {
+        $query = $this->con->prepare("SELECT userTo FROM subscribers WHERE userFrom=:userFrom");
+        $username = $this->getUsername();
+        $query->bindParam(":userFrom", $username);
+        $query->execute();
+        
+        $subs = array();
+        while($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            $user = new User($this->con, $row["userTo"]);
+            array_push($subs, $user);
+        }
+        return $subs;
+    }
+
 }
 ?>

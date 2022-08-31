@@ -5,6 +5,7 @@ require_once("includes/classes/User.php");
 require_once("includes/classes/Video.php"); 
 require_once("includes/classes/VideoGrid.php");
 require_once("includes/classes/VideoGridItem.php");
+require_once("includes/classes/SubscriptionsProvider.php");
 
 $usernameLoggedIn = User::isLoggedIn() ? $_SESSION["userLoggedIn"] : "";
 $userLoggedInObj = new User($con, $usernameLoggedIn);
@@ -30,18 +31,18 @@ $userLoggedInObj = new User($con, $usernameLoggedIn);
 
         <div id="mastHeadContainer">
             <button class="navShowHide">
-                <img src="assets/images/icons/icons8-menu-36.png" alt="menu">
+                <img src="assets/images/icons/menu.png" alt="menu">
             </button>
 
             <a class="logoContainer" href="index.php">
-                <img src="assets/images/icons/icons8-youtube-36.png" title="logo" alt="Site logo">
+                <img src="assets/images/icons/VideoTubeLogo.png" title="logo" alt="Site logo">
             </a>
 
             <div class="searchBarContainer">
                 <form action="search.php" method="GET">
                     <input type="text" class="searchBar" name="term" placeholder="Search...">
                     <button class="searchButton">
-                        <img class="search-icon" src="assets/images/icons/icons8-search-50.png">
+                        <img class="search-icon" src="assets/images/icons/search.png">
                     </button>
                 </form>
             </div>

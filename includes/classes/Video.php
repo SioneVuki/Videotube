@@ -135,7 +135,7 @@ class Video {
     public function dislike() {
         $id = $this->getId();
         $username = $this->userLoggedInObj->getUsername();
-        
+
         if($this->wasDislikedBy()) {
             // User has already liked
             $query = $this->con->prepare("DELETE FROM dislikes WHERE username=:username AND videoId=:videoId");
@@ -207,7 +207,7 @@ class Video {
     }
 
     public function getComments() {
-        $query = $this->con->prepare("SELECT * FROM comments WHERE videoId=:videoId  AND responseTo=0 ORDER BY datePosted DESC");
+        $query = $this->con->prepare("SELECT * FROM comments WHERE videoId=:videoId AND responseTo=0 ORDER BY datePosted DESC");
         $query->bindParam(":videoId", $id);
 
         $id = $this->getId();

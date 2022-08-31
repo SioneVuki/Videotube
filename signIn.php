@@ -46,7 +46,7 @@ function getInputValue($name) {
          <div class="column columnForm">
 
             <div class="header">
-                <img src="assets/images/icons/icons8-youtube-36.png" title="logo" alt="Site logo">
+                <img src="assets/images/icons/VideoTubeLogo.png" title="logo" alt="Site logo">
                 <h3>Sign In</h3>
                 <span>to continue to Hoopology</span>
             </div>
